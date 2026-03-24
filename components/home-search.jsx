@@ -72,7 +72,14 @@ export function HomeSearch() {
     }
   };
 
-  
+  const { getRootProps, getInputProps, isDragActive, isDragReject } =
+    useDropzone({
+      onDrop,
+      accept: {
+        "image/*": [".jpeg", ".jpg", ".png"],
+      },
+      maxFiles: 1,
+    });
 
   const handleTextSearch = (e) => {
     e.preventDefault();
