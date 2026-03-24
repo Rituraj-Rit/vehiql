@@ -17,7 +17,6 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 
-// Helper function to format time
 const formatTime = (timeString) => {
   try {
     return format(parseISO(`2022-01-01T${timeString}`), "h:mm a");
@@ -26,7 +25,6 @@ const formatTime = (timeString) => {
   }
 };
 
-// Helper function for status badge
 const getStatusBadge = (status) => {
   switch (status) {
     case "PENDING":
@@ -55,7 +53,6 @@ export function TestDriveCard({
 }) {
   const [cancelDialogOpen, setCancelDialogOpen] = useState(false);
 
-  // Handle cancel
   const handleCancel = async () => {
     if (!onCancel) return;
 
@@ -71,7 +68,6 @@ export function TestDriveCard({
         }`}
       >
         <div className="flex flex-col sm:flex-row">
-          {/* Car Image - Left */}
           <div className="sm:w-1/4 relative h-40 sm:h-auto">
             {booking.car.images && booking.car.images.length > 0 ? (
               <div className="relative w-full h-full">
@@ -92,7 +88,6 @@ export function TestDriveCard({
             </div>
           </div>
 
-          {/* Booking Details - Middle */}
           <div className="p-4 sm:w-1/2 sm:flex-1">
             <div className="hidden sm:block mb-2">
               {getStatusBadge(booking.status)}
@@ -113,7 +108,6 @@ export function TestDriveCard({
                 {formatTime(booking.startTime)} - {formatTime(booking.endTime)}
               </div>
 
-              {/* Show customer info in admin view */}
               {isAdmin && booking.user && (
                 <div className="flex items-center text-gray-600">
                   <User className="h-4 w-4 mr-2" />
@@ -123,10 +117,9 @@ export function TestDriveCard({
             </div>
           </div>
 
-          {/* Action Buttons - Right */}
           {showActions && (
             <div className="p-4 border-t sm:border-t-0 sm:border-l sm:w-1/4 sm:flex sm:flex-col sm:justify-center sm:items-center sm:space-y-2">
-              {/* Show notes if any */}
+
               {booking.notes && (
                 <div className="bg-gray-50 p-2 rounded text-sm w-full">
                   <p className="font-medium">Notes:</p>
@@ -169,7 +162,6 @@ export function TestDriveCard({
         </div>
       </Card>
 
-      {/* Cancel Confirmation Dialog */}
       {onCancel && (
         <Dialog open={cancelDialogOpen} onOpenChange={setCancelDialogOpen}>
           <DialogContent>

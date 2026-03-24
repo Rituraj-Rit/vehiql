@@ -50,12 +50,10 @@ import Image from "next/image";
 export const CarsList = () => {
   const router = useRouter();
 
-  // State for search and dialogs
   const [search, setSearch] = useState("");
   const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
   const [carToDelete, setCarToDelete] = useState(null);
 
-  // Custom hooks for API calls
   const {
     loading: loadingCars,
     fn: fetchCars,
@@ -77,12 +75,10 @@ export const CarsList = () => {
     error: updateError,
   } = useFetch(updateCarStatus);
 
-  // Initial fetch and refetch on search changes
   useEffect(() => {
     fetchCars(search);
   }, [search]);
 
-  // Handle errors
   useEffect(() => {
     if (carsError) {
       toast.error("Failed to load cars");
@@ -97,7 +93,6 @@ export const CarsList = () => {
     }
   }, [carsError, deleteError, updateError]);
 
-  // Handle successful operations
   useEffect(() => {
     if (deleteResult?.success) {
       toast.success("Car deleted successfully");
@@ -110,13 +105,13 @@ export const CarsList = () => {
     }
   }, [deleteResult, updateResult, search]);
 
-  // Handle search submit
+
   const handleSearchSubmit = (e) => {
     e.preventDefault();
     fetchCars(search);
   };
 
-  // Handle delete car
+
   const handleDeleteCar = async () => {
     if (!carToDelete) return;
 
@@ -125,17 +120,17 @@ export const CarsList = () => {
     setCarToDelete(null);
   };
 
-  // Handle toggle featured status
+
   const handleToggleFeatured = async (car) => {
     await updateCarStatusFn(car.id, { featured: !car.featured });
   };
 
-  // Handle status change
+
   const handleStatusUpdate = async (car, newStatus) => {
     await updateCarStatusFn(car.id, { status: newStatus });
   };
 
-  // Get status badge color
+
   const getStatusBadge = (status) => {
     switch (status) {
       case "AVAILABLE":
@@ -163,7 +158,7 @@ export const CarsList = () => {
 
   return (
     <div className="space-y-4">
-      {/* Actions and Search */}
+
       <div className="flex flex-col sm:flex-row gap-4 items-start sm:items-center justify-between">
         <Button
           onClick={() => router.push("/admin/cars/create")}
@@ -173,7 +168,7 @@ export const CarsList = () => {
           Add Car
         </Button>
 
-        {/* Simple Search Form */}
+        
         <form onSubmit={handleSearchSubmit} className="flex w-full sm:w-auto">
           <div className="relative flex-1">
             <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-gray-500" />
@@ -188,7 +183,7 @@ export const CarsList = () => {
         </form>
       </div>
 
-      {/* Cars Table */}
+
       <Card>
         <CardContent className="p-0">
           {loadingCars && !carsData ? (
@@ -336,7 +331,7 @@ export const CarsList = () => {
         </CardContent>
       </Card>
 
-      {/* Delete Confirmation Dialog */}
+
       <Dialog open={deleteDialogOpen} onOpenChange={setDeleteDialogOpen}>
         <DialogContent>
           <DialogHeader>

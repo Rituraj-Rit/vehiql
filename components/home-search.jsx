@@ -18,7 +18,6 @@ export function HomeSearch() {
   const [isUploading, setIsUploading] = useState(false);
   const [isImageSearchActive, setIsImageSearchActive] = useState(false);
 
-  // Use the useFetch hook for image processing
   const {
     loading: isProcessing,
     fn: processImageFn,
@@ -26,19 +25,16 @@ export function HomeSearch() {
     error: processError,
   } = useFetch(processImageSearch);
 
-  // Handle process result and errors with useEffect
   useEffect(() => {
     if (processResult?.success) {
       const params = new URLSearchParams();
 
-      // Add extracted params to the search
       if (processResult.data.make) params.set("make", processResult.data.make);
       if (processResult.data.bodyType)
         params.set("bodyType", processResult.data.bodyType);
       if (processResult.data.color)
         params.set("color", processResult.data.color);
 
-      // Redirect to search results
       router.push(`/cars?${params.toString()}`);
     }
   }, [processResult, router]);
@@ -51,7 +47,6 @@ export function HomeSearch() {
     }
   }, [processError]);
 
-  // Handle image upload with react-dropzone
   const onDrop = (acceptedFiles) => {
     const file = acceptedFiles[0];
     if (file) {
@@ -77,16 +72,8 @@ export function HomeSearch() {
     }
   };
 
-  const { getRootProps, getInputProps, isDragActive, isDragReject } =
-    useDropzone({
-      onDrop,
-      accept: {
-        "image/*": [".jpeg", ".jpg", ".png"],
-      },
-      maxFiles: 1,
-    });
+  
 
-  // Handle text search submissions
   const handleTextSearch = (e) => {
     e.preventDefault();
     if (!searchTerm.trim()) {
@@ -97,7 +84,6 @@ export function HomeSearch() {
     router.push(`/cars?search=${encodeURIComponent(searchTerm)}`);
   };
 
-  // Handle image search submissions
   const handleImageSearch = async (e) => {
     e.preventDefault();
     if (!searchImage) {
@@ -105,7 +91,6 @@ export function HomeSearch() {
       return;
     }
 
-    // Use the processImageFn from useFetch hook
     await processImageFn(searchImage);
   };
 
@@ -122,7 +107,6 @@ export function HomeSearch() {
             className="pl-10 pr-12 py-6 w-full rounded-full border-gray-300 bg-white/95 backdrop-blur-sm"
           />
 
-          {/* Image Search Button */}
           <div className="absolute right-[100px]">
             <Camera
               size={35}

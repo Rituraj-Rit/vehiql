@@ -19,9 +19,10 @@ import {
 export function Dashboard({ initialData }) {
   const [activeTab, setActiveTab] = useState("overview");
 
-  // Show error if data fetch failed
   if (!initialData || !initialData.success) {
+
     return (
+
       <Alert variant="destructive">
         <Info className="h-4 w-4" />
         <AlertTitle>Error</AlertTitle>
@@ -108,7 +109,6 @@ export function Dashboard({ initialData }) {
             </Card>
           </div>
 
-          {/* Additional Overview Content */}
           <Card>
             <CardHeader>
               <CardTitle>Dealership Summary</CardTitle>
@@ -195,7 +195,6 @@ export function Dashboard({ initialData }) {
           </Card>
         </TabsContent>
 
-        {/* Test Drives Tab */}
         <TabsContent value="test-drives" className="space-y-6">
           <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-5">
             <Card>
@@ -263,7 +262,6 @@ export function Dashboard({ initialData }) {
             </Card>
           </div>
 
-          {/* Test Drive Status Visualization */}
           <Card>
             <CardHeader>
               <CardTitle>Test Drive Statistics</CardTitle>
@@ -271,7 +269,6 @@ export function Dashboard({ initialData }) {
             <CardContent>
               <div className="space-y-6">
                 <div className="grid grid-cols-2 gap-6">
-                  {/* Conversion Rate Card */}
                   <div className="bg-gray-50 rounded-lg p-4">
                     <h3 className="text-lg font-medium mb-2">
                       Conversion Rate
@@ -284,7 +281,6 @@ export function Dashboard({ initialData }) {
                     </p>
                   </div>
 
-                  {/* Test Drive Success Rate */}
                   <div className="bg-gray-50 rounded-lg p-4">
                     <h3 className="text-lg font-medium mb-2">
                       Completion Rate
@@ -304,11 +300,9 @@ export function Dashboard({ initialData }) {
                   </div>
                 </div>
 
-                {/* Status Breakdown */}
                 <div className="space-y-4 mt-4">
                   <h3 className="font-medium">Booking Status Breakdown</h3>
 
-                  {/* Pending */}
                   <div className="space-y-2">
                     <div className="flex justify-between text-sm">
                       <span>Pending</span>
@@ -333,7 +327,6 @@ export function Dashboard({ initialData }) {
                     </div>
                   </div>
 
-                  {/* Confirmed */}
                   <div className="space-y-2">
                     <div className="flex justify-between text-sm">
                       <span>Confirmed</span>
@@ -345,6 +338,7 @@ export function Dashboard({ initialData }) {
                         ).toFixed(1)}
                         %)
                       </span>
+
                     </div>
                     <div className="w-full bg-gray-200 rounded-full h-2.5">
                       <div
@@ -354,11 +348,12 @@ export function Dashboard({ initialData }) {
                             (testDrives.confirmed / testDrives.total) * 100
                           }%`,
                         }}
-                      ></div>
+                      >
+                      </div>
+
                     </div>
                   </div>
 
-                  {/* Completed */}
                   <div className="space-y-2">
                     <div className="flex justify-between text-sm">
                       <span>Completed</span>
@@ -371,6 +366,7 @@ export function Dashboard({ initialData }) {
                         %)
                       </span>
                     </div>
+
                     <div className="w-full bg-gray-200 rounded-full h-2.5">
                       <div
                         className="bg-blue-600 h-2.5 rounded-full"
@@ -383,7 +379,6 @@ export function Dashboard({ initialData }) {
                     </div>
                   </div>
 
-                  {/* Cancelled */}
                   <div className="space-y-2">
                     <div className="flex justify-between text-sm">
                       <span>Cancelled</span>
@@ -408,7 +403,6 @@ export function Dashboard({ initialData }) {
                     </div>
                   </div>
 
-                  {/* No Show */}
                   <div className="space-y-2">
                     <div className="flex justify-between text-sm">
                       <span>No Show</span>
@@ -433,10 +427,13 @@ export function Dashboard({ initialData }) {
                   </div>
                 </div>
               </div>
+
             </CardContent>
           </Card>
         </TabsContent>
       </Tabs>
+
     </div>
   );
+
 }
