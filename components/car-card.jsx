@@ -96,7 +96,7 @@ export const CarCard = ({ car }) => {
             {car.make} {car.model}
           </h3>
           <span className="text-xl font-bold text-blue-600">
-            ${car.price.toLocaleString()}
+            ${car.price.toLocaleString('en-US')}
           </span>
         </div>
 
@@ -113,7 +113,7 @@ export const CarCard = ({ car }) => {
             {car.bodyType}
           </Badge>
           <Badge variant="outline" className="bg-gray-50">
-            {car.mileage.toLocaleString()} miles
+            {car.mileage.toLocaleString('en-US')} miles
           </Badge>
           <Badge variant="outline" className="bg-gray-50">
             {car.color}

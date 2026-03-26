@@ -8,7 +8,7 @@ const CarListingsLoading = () => {
         {Array(6)
           .fill(0)
           .map((_, i) => (
-            <div key={i} className="rounded-lg border overflow-hidden">
+            <div key={i} className="rounded-lg border overflow-hidden ">
               <Skeleton className="h-48 w-full" />
               <div className="p-4 space-y-3">
                 <Skeleton className="h-5 w-2/3" />
