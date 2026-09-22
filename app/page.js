@@ -76,7 +76,7 @@ export default async function Home() {
                 <div className="h-16 w-auto mx-auto mb-2 relative">
                   <Image
                     src={
-                      make.imageUrl || `/make/${make.name.toLowerCase()}.webp`
+                      make.imageUrl || make.image || `/make/${make.name.toLowerCase()}.webp`
                     }
                     alt={make.name}
                     fill
